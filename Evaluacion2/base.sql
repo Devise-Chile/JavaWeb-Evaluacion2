@@ -55,3 +55,11 @@ CREATE TABLE `jugador` (
   CONSTRAINT `fk_jugador_equipo` FOREIGN KEY (`cod_equipo`) REFERENCES `equipo` (`codigo`) ON UPDATE CASCADE,
   CONSTRAINT `fk_jugador_posicion` FOREIGN KEY (`cod_posicion`) REFERENCES `posicion` (`codigo`) ON UPDATE CASCADE
 );
+
+CREATE TABLE `usuario` (
+  `run` varchar(10) NOT NULL,
+  `nombre` varchar(45) NOT NULL,
+  `apellido` varchar(45) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  PRIMARY KEY (`run`)
+);
