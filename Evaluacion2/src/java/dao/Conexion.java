@@ -18,7 +18,7 @@ import java.sql.Statement;
 public class Conexion {
     Connection conexion; // variable tipo Connection para la conexion a base de datos
     String url = "jdbc:mysql://localhost:3306/"; // inicio de la cadena de conexion
-    String bd = "sistema01";  // variable para el nombre de nuestra base de datos
+    String bd = "evaluacion2";  // variable para el nombre de nuestra base de datos
     String driver = "com.mysql.jdbc.Driver"; // driver de jdbc para mysql
     String usuario = "root"; // usuario de la base de datos
     String password = ""; // password del usuario de la base de datos
