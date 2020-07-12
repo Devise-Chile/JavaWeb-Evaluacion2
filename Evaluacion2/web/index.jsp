@@ -4,6 +4,7 @@
     Author     : amaru
 --%>
 
+<%@page import="modelos.Usuario"%>
 <%@page contentType="text/html" pageEncoding="windows-1252"%>
 <!DOCTYPE html>
 <html>
@@ -16,7 +17,7 @@
         <h1>Inicio de Sesion</h1>
         <%  Cookie[] cookies = request.getCookies();
         String saludo ="";
-        String id = "";
+        String run = "";
         String pass ="";
         Usuario usuario;
         for(int i=0; i<cookies.length; i++)
@@ -26,8 +27,8 @@
         {
         saludo += "Bienvenido "+cookieActual.getValue();
         }
-        if(cookieActual.getName().equals("id")){
-            id = cookieActual.getValue();
+        if(cookieActual.getName().equals("run")){
+            run = cookieActual.getValue();
         }
         if(cookieActual.getName().equals("pass")){
             pass = cookieActual.getValue();
@@ -44,7 +45,7 @@
         <table>
             <tr>
                 <td>Id</td>
-                <td><input type="text" name="id" value="<%= id %>"/></td>
+                <td><input type="text" name="run" value="<%= run %>"/></td>
             </tr>
             <tr>
                 <td>Password</td>
