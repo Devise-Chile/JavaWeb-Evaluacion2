@@ -9,41 +9,50 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="css/uikit.min.css" />
-        <script src="js/uikit.min.js"></script>
-        <script src="js/uikit-icons.min.js"></script>
+        <!-- UIkit CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/css/uikit.min.css" />
+
+        <!-- UIkit JS -->
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit-icons.min.js"></script>
         <title>Registro</title>
     </head>
     <body>
     <center>
-        <h1>Registro de Usuarios</h1>
+        <nav class="uk-navbar-container" uk-navbar>
+
+            <div class="uk-navbar-right">
+
+                <ul class="uk-navbar-nav">
+                    <li><a href="index.jsp">Inicio</a></li>
+                </ul>
+
+            </div>
+        </nav>
+        <br /><br />
         <form action="ControladorUsuario" method="post">
-            <table>
-            <tr>
-               <td>Run</td>
-                <td><input type="text" name="run"/></td>
-            </tr>
-            <tr>
-                <td>Nombre</td>
-                <td><input type="text" name="nombre"/></td>
-            </tr>
-            <tr>
-                <td>Apellido</td>
-                <td><input type="text" name="apellido"/></td>
-            </tr>
-            <tr>
-                <td>Password</td>
-                <td><input type="password" name="password"/></td>
-            </tr>
-            <tr>
-                <td><input type="submit" value="Registrar"/></td>
-                <td><a href="index.jsp">
-                    <input type="button" value="Volver"/>
-                    </a>
-                </td>
-            </tr>
-            
-        </table>
+            <fieldset class="uk-fieldset">
+                <div>
+                <legend class="uk-legend">Registro de Usuarios</legend>
+                </div><br /><br />
+                <div>
+                    Run
+                    <input class="uk-input uk-form-width-large" type="text" name="run" value="">
+                </div><br />
+                <div>
+                    Nombre
+                    <input class="uk-input uk-form-width-large" type="text" name="nombre" value="">
+                </div><br />
+                <div>
+                    Apellido
+                    <input class="uk-input uk-form-width-large" type="text" name="apellido" value="">
+                </div><br />
+                <div>
+                    Password
+                    <input class="uk-input uk-form-width-large" type="password" name="password" value=""/>
+                </div><br />
+                <a class="uk-button uk-button-default" href="equipos.jsp">Registrar</a>
+            </fieldset>
             <input type="hidden" name="accion" value="2"/>
         </form>
         <% if(request.getParameter("msj")!= null){%>

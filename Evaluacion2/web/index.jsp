@@ -28,9 +28,7 @@
                 <ul class="uk-navbar-nav">
                     <li><a href="registro.jsp">Registro usuario</a></li>
                 </ul>
-
             </div>
-
         </nav>
         <div class="uk-container">
             <center>

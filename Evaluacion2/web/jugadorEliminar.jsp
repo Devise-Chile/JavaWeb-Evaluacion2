@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Jugadores
-    Created on : 13/07/2020, 09:40:20 PM
+    Document   : jugadorEliminar
+    Created on : 14/07/2020, 07:40:13 PM
     Author     : amaru
 --%>
 
@@ -15,7 +15,7 @@
         <!-- UIkit JS -->
         <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit-icons.min.js"></script>
-        <title>Jugadores</title>
+        <title>Eliminar Jugador</title>
     </head>
     <body>
         <nav class="uk-navbar-container" uk-navbar>
@@ -32,40 +32,5 @@
                 </ul>
             </div>
         </nav>
-        <h3>Jugadores Registrados</h3>
-        <table class="uk-table uk-table-divider">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Edad</th>
-                    <th>Posición</th>
-                    <th>Sueldo Anual</th>
-                    <th>Equipo Actual</th>
-                    <th>Modificar</th>
-                    <th>Eliminar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><a href="modificarJugador.jsp?cod=<%=  %>">
-                        <input type="button" value="Modificar"/>
-                        </a>
-                    </td>
-                    <td><a href="eliminarJugador.jsp?id=<%=  %>">
-                            <input type="button" value="Eliminar"/>
-                        </a>
-                    </td>       
-                </tr>
-            </tbody>
-        </table>
     </body>
 </html>
