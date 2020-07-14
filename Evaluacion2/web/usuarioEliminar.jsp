@@ -20,7 +20,11 @@
         <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit-icons.min.js"></script>
         <title>Eliminar Usuairo</title>
     </head>
-    <body><center>
+    <body>
+        <%@include file="partials/header.jsp" %>
+        <%@include file="partials/autenticado.jsp" %>
+        
+    <center>
         <h1>Confirme los datos a eliminar</h1>
         <% Usuario u = new Usuario(); 
           if(request.getParameter("run")!= null){

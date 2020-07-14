@@ -18,19 +18,8 @@
         <title>Eliminar Jugador</title>
     </head>
     <body>
-        <nav class="uk-navbar-container" uk-navbar>
-            <div class="uk-navbar-center">
-                <ul class="uk-navbar-nav">
-                    <li class="uk-nav-header ">Gestor de</li>
-                    <li><a href="#">Equipos</a></li>
-                    <li class="uk-active"><a href="jugadores.jsp">Jugadores</a></li>
-                    <li><a href="estadios.jsp">Estadios</a></li>
-                    <li><a href="divisiones.jsp">Divisiones</a></li>
-                    <li><a href="ciudades.jsp">Ciudades</a></li>
-                    <li><a href="posiciones.jsp">Posiciones</a></li>
-                    <li><a href="usuarios.jsp">Usuarios</a></li>
-                </ul>
-            </div>
-        </nav>
+        <%@include file="partials/header.jsp" %>
+        <%@include file="partials/autenticado.jsp" %>
+        
     </body>
 </html>

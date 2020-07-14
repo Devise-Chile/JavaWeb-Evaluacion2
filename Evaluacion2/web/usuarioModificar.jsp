@@ -20,8 +20,9 @@
         <title>Modificar Usuario</title>
     </head>
     <body>
-    <% if(session.getAttribute("usuario")== null){
-             response.sendRedirect("index.jsp?msj=acceso denegado");}%>
+        <%@include file="partials/header.jsp" %>
+        <%@include file="partials/autenticado.jsp" %>
+        
     <center>
 
         <% Usuario u = new Usuario(); 
