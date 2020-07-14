@@ -109,11 +109,10 @@ public class ControladorUsuario extends HttpServlet {
         try{
         String run = request.getParameter("run");
         String password = request.getParameter("password");
-        Usuario usuarioIniciando = new Usuario(run, password);
         UsuarioDAO ud = new UsuarioDAO();
-        Usuario temporal= ud.obtenerUsuario(usuarioIniciando.getRun());
+        Usuario temporal= ud.obtenerUsuario(run);
         if(temporal!=null){
-            if(temporal.getPassword().equals(usuarioIniciando.getPassword())){
+            if(temporal.getPassword().equals(password)){
             HttpSession sesion = request.getSession();
             sesion.setAttribute("usuario", temporal);
             
