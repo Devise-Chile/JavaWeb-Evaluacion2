@@ -28,9 +28,7 @@
                 <ul class="uk-navbar-nav">
                     <li><a href="registro.jsp">Registro usuario</a></li>
                 </ul>
-
             </div>
-
         </nav>
         <div class="uk-container">
             <center>
@@ -50,9 +48,6 @@
                             <input class="uk-input uk-form-width-large" type="password" name="password" value=""/>
                         </div><br />
                         <a class="uk-button uk-button-default" href="equipos.jsp">Iniciar</a>
-                        <a href="equipos.jsp">
-                            <input type="button" value="Iniciar"/>
-                        </a>
                     </fieldset>
                     
                     <input type="hidden" name="accion" value="1"/>

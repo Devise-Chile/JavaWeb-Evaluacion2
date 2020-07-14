@@ -1,6 +1,6 @@
 <%-- 
-    Document   : intranet
-    Created on : 13/07/2020, 09:32:40 PM
+    Document   : equipoModificar
+    Created on : 14/07/2020, 07:38:28 PM
     Author     : amaru
 --%>
 
@@ -15,7 +15,7 @@
         <!-- UIkit JS -->
         <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit-icons.min.js"></script>
-        <title>Equipos</title>
+        <title>Modificar Equipo</title>
     </head>
     <body>
         <nav class="uk-navbar-container" uk-navbar>
@@ -32,38 +32,5 @@
                 </ul>
             </div>
         </nav>
-        <h3>Equipos Registrados</h3>
-        <table class="uk-table uk-table-divider">
-            <thead>
-                <tr>
-                    <th>Código</th>
-                    <th>Nombre</th>
-                    <th>Procedencia</th>
-                    <th>Estadio</th>
-                    <th>División</th>
-                    <th>Jugadores</th>
-                    <th>Modificar</th>
-                    <th>Eliminar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><a href="modificarEduipo.jsp?cod=<%=  %>">
-                        <input type="button" value="Modificar"/>
-                        </a>
-                    </td>
-                    <td><a href="eliminarEquipo.jsp?id=<%=  %>">
-                            <input type="button" value="Eliminar"/>
-                        </a>
-                    </td>       
-                </tr>
-            </tbody>
-        </table>
     </body>
 </html>

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : intranet
-    Created on : 13/07/2020, 09:32:40 PM
+    Document   : estadios
+    Created on : 14/07/2020, 07:12:40 PM
     Author     : amaru
 --%>
 
@@ -15,16 +15,16 @@
         <!-- UIkit JS -->
         <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit-icons.min.js"></script>
-        <title>Equipos</title>
+        <title>Estadios</title>
     </head>
     <body>
         <nav class="uk-navbar-container" uk-navbar>
             <div class="uk-navbar-center">
                 <ul class="uk-navbar-nav">
                     <li class="uk-nav-header ">Gestor de</li>
-                    <li class="uk-active"><a href="#">Equipos</a></li>
+                    <li><a href="#">Equipos</a></li>
                     <li><a href="jugadores.jsp">Jugadores</a></li>
-                    <li><a href="estadios.jsp">Estadios</a></li>
+                    <li class="uk-active"><a href="estadios.jsp">Estadios</a></li>
                     <li><a href="divisiones.jsp">Divisiones</a></li>
                     <li><a href="ciudades.jsp">Ciudades</a></li>
                     <li><a href="posiciones.jsp">Posiciones</a></li>
@@ -32,16 +32,14 @@
                 </ul>
             </div>
         </nav>
-        <h3>Equipos Registrados</h3>
+                <h3>Estadios Registrados</h3>
         <table class="uk-table uk-table-divider">
             <thead>
                 <tr>
                     <th>Código</th>
                     <th>Nombre</th>
-                    <th>Procedencia</th>
-                    <th>Estadio</th>
-                    <th>División</th>
-                    <th>Jugadores</th>
+                    <th>Ciudad</th>
+                    <th>Capacidad</th>
                     <th>Modificar</th>
                     <th>Eliminar</th>
                 </tr>
@@ -52,13 +50,11 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><a href="modificarEduipo.jsp?cod=<%=  %>">
+                    <td><a href="modificarEstadio.jsp?cod=<%=  %>">
                         <input type="button" value="Modificar"/>
                         </a>
                     </td>
-                    <td><a href="eliminarEquipo.jsp?id=<%=  %>">
+                    <td><a href="eliminarEstadio.jsp?id=<%=  %>">
                             <input type="button" value="Eliminar"/>
                         </a>
                     </td>       
