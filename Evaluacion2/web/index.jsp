@@ -10,34 +10,57 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- UIkit CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/css/uikit.min.css" />
+
+        <!-- UIkit JS -->
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit-icons.min.js"></script>
+
+
         <title>Inicio</title>
     </head>
     <body>
-        <center>
-        <h1>Inicio de Sesion</h1>
-        <form action="ControladorUsuario" method="post">
-        <table>
-            <tr>
-                <td>RUN</td>
-                <td><input type="text" name="run" value=""/></td>
-            </tr>
-            <tr>
-                <td>Password</td>
-                <td><input type="password" name="password" value=""/></td>
-            </tr>
-            <tr>
-                <td><input type="submit" value="Iniciar Sesion"/></td>
-                <td><a href="registro.jsp">
-                        <input type="button" value="Registrar"/>
-                    </a>
-                </td>
-            </tr>
-        </table>
-            <input type="hidden" name="accion" value="1"/>
-        <% if(request.getParameter("msj")!= null){%>
-        <h3><%= request.getParameter("msj") %></h3>
-        <%}%>
-        </form>
-        </center>
+        <nav class="uk-navbar-container" uk-navbar>
+
+            <div class="uk-navbar-right">
+
+                <ul class="uk-navbar-nav">
+                    <li><a href="registro.jsp">Registro usuario</a></li>
+                </ul>
+
+            </div>
+
+        </nav>
+        <div class="uk-container">
+            <center>
+                <br /><br />
+                <form action="ControladorUsuario" method="post">
+                    
+                    <fieldset class="uk-fieldset">
+                        <div>
+                        <legend class="uk-legend">Inicio de Sesión</legend>
+                        </div><br /><br />
+                        <div>
+                            Run
+                            <input class="uk-input uk-form-width-large" type="text" name="run" value="">
+                        </div><br />
+                        <div>
+                            Password
+                            <input class="uk-input uk-form-width-large" type="password" name="password" value=""/>
+                        </div><br />
+                        <a class="uk-button uk-button-default" href="equipos.jsp">Iniciar</a>
+                        <a href="equipos.jsp">
+                            <input type="button" value="Iniciar"/>
+                        </a>
+                    </fieldset>
+                    
+                    <input type="hidden" name="accion" value="1"/>
+                <% if(request.getParameter("msj")!= null){%>
+                <h3><%= request.getParameter("msj") %></h3>
+                <%}%>
+                </form>
+            </center>
+        </div>
     </body>
 </html>
