@@ -63,3 +63,7 @@ CREATE TABLE `usuario` (
   `password` varchar(45) NOT NULL,
   PRIMARY KEY (`run`)
 );
+
+create or replace view v_estadio as
+select e.codigo as cod_estadio, e.nombre as nombre_estadio, e.cod_ciudad, e.capacidad, c.nombre as nombre_ciudad
+from estadio e inner join ciudad c on e.cod_ciudad = c.codigo;

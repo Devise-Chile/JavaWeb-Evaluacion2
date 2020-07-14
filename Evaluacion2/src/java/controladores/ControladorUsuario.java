@@ -8,6 +8,13 @@ package controladores;
 import dao.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -102,30 +109,13 @@ public class ControladorUsuario extends HttpServlet {
         try{
         String run = request.getParameter("run");
         String password = request.getParameter("password");
-        Usuario usuarioIniciando = new Usuario(run,password);
+        Usuario usuarioIniciando = new Usuario(run, password);
         UsuarioDAO ud = new UsuarioDAO();
         Usuario temporal= ud.obtenerUsuario(usuarioIniciando.getRun());
         if(temporal!=null){
             if(temporal.getPassword().equals(usuarioIniciando.getPassword())){
             HttpSession sesion = request.getSession();
             sesion.setAttribute("usuario", temporal);
-            
-            Cookie co = new Cookie("usuario",temporal.getRun()+","+temporal.getNombre()+","+
-                    temporal.getApellido()+","+temporal.getPassword());
-            co.setMaxAge(60*60*24*30);
-            response.addCookie(co);
-            
-            Cookie c = new Cookie("nombre",temporal.getNombre()+" "+temporal.getApellido());
-            c.setMaxAge(60*60*24*30);
-            response.addCookie(c);
-            
-            Cookie c2 = new Cookie("run",temporal.getRun());
-            c2.setMaxAge(60*60*24*30);
-            response.addCookie(c2);
-            
-            Cookie c3 = new Cookie("pass",temporal.getPassword());
-            c3.setMaxAge(60*60*24*30);
-            response.addCookie(c3);
             
             response.sendRedirect("intranet.jsp");
             }else{
@@ -169,7 +159,7 @@ public class ControladorUsuario extends HttpServlet {
                response.sendRedirect("index.jsp?msj="+e.getMessage());
            }
         }
-
+        
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
