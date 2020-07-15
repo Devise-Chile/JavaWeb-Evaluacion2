@@ -1,9 +1,8 @@
 <%-- 
-    Document   : jugadorModificar
-    Created on : 14/07/2020, 07:40:23 PM
+    Document   : posicionModificar
+    Created on : 14/07/2020, 08:02:21 PM
     Author     : amaru
 --%>
-
 <%@page import="dao.PosicionDAO"%>
 <%@page import="modelos.Posicion"%>
 <%@page contentType="text/html" pageEncoding="windows-1252"%>
@@ -17,38 +16,39 @@
         <!-- UIkit JS -->
         <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit-icons.min.js"></script>
-        <title>Modificar Posicion</title>
+        <title>Modificar Posición</title>
     </head>
     <body>
         <%@include file="partials/header.jsp" %>
         <%@include file="partials/autenticado.jsp" %>
         
-        <center class="uk-container">
-            <h3>Modificar Posicion</h3>
-            <% if(request.getParameter("cod")!=null){
-                Posicion pos = new PosicionDAO().obtenerPosicion(Integer.parseInt(request.getParameter("cod")));
-            %>
+        <% if(request.getParameter("cod")!=null){
+            Posicion pos = new PosicionDAO().obtenerPosicion(Integer.parseInt(request.getParameter("cod")));
+        %>
+        <center>
             <form action="ControladorPosicion" method="post">
-                <table>
-                    <tr>
-                        <td>Codigo</td>
-                        <td><input type="text" name="codigo" readonly="true" value="<%= pos.getCodigo()%>" /></td>
-                    </tr>
-                    <tr>
-                        <td>Nombre</td>
-                        <td><input type="text" name="nombre" value="<%= pos.getNombre() %>"/></td>
-                    </tr>
-                    <tr>
-                        <td><input type="reset" value="Limpiar"/></td>
-                        <td><input type="submit" value="Modificar"/></td>
-                        <input type="hidden" name="accion" value="2"/>
-                    </tr>
-                </table>
+                <fieldset class="uk-fieldset">
+                    <div>
+                    <legend class="uk-legend">Modificar Posición</legend>
+                    </div><br /><br />
+                    <div>
+                        Código
+                        <input class="uk-input uk-form-width-large" type="text" name="codigo" readonly="true" value="<%= pos.getCodigo()%>">
+                    </div><br />
+                    <div>
+                        Nombre
+                        <input class="uk-input uk-form-width-large" type="text" name="nombre" value="<%= pos.getNombre() %>">
+                    </div><br />
+
+                    <input class="uk-button uk-button-default" type="submit" value="Modificar" />
+                    <a class="uk-button uk-button-default" href="posiciones.jsp">Cancelar</a>
+                </fieldset>
+                <input type="hidden" name="accion" value="2"/>
             </form>
             <% }%>
             <% if(request.getParameter("msj")!= null){%>
                 <h4><%= request.getParameter("msj") %></h4>
-            <%}%>
+            <%}%> 
         </center>
     </body>
 </html>

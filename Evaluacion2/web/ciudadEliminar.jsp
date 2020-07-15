@@ -20,7 +20,25 @@
     <body>
         <%@include file="partials/header.jsp" %>
         <%@include file="partials/autenticado.jsp" %>
-        
-        <h3>Eliminar Ciudad</h3>
+
+        <form action="ControladorUsuario" method="post">
+            <fieldset class="uk-fieldset">
+                <div>
+                <legend class="uk-legend">Eliminar Ciudad</legend>
+                </div><br /><br />
+                <div>
+                    Código
+                    <input class="uk-input uk-form-width-large" type="text" name="run" readonly="true" value="<%=  %>">
+                </div><br />
+                <div>
+                    Nombre
+                    <input class="uk-input uk-form-width-large" type="text" name="nombre" readonly="true" value="<%= ) %>">
+                </div><br />
+                
+                <a class="uk-button uk-button-default" href="ciudades.jsp">Eliminar</a>
+            </fieldset>
+            <input type="hidden" name="accion" value="3"/>
+        </form>
+                <a class="uk-button uk-button-default" href="ciudades.jsp">Cancelar</a>
     </body>
 </html>
