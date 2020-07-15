@@ -24,7 +24,7 @@
     <body>
         <%@include file="partials/header.jsp" %>
         <%@include file="partials/autenticado.jsp" %>
-    <center>
+    <center class="uk-container">
         
         <% if(session.getAttribute("usuario")!= null){
              Usuario u = (Usuario) session.getAttribute("usuario");
@@ -38,7 +38,7 @@
                     <th>Run</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
-                    <th>Apellido</th>
+                    <th>Password</th>
                     <th>Modificar</th>
                     <th>Eliminar</th>
                 </tr>
@@ -53,11 +53,11 @@
                     <td><%= u.getNombre() %></td>
                     <td><%= u.getApellido() %></td>
                     <td><%= UsuarioUtil.createPassword() %></td>
-                    <td><a href="usuarioModificar.jsp?id=<%= u.getRun() %>">
+                    <td><a href="usuarioModificar.jsp?run=<%= u.getRun() %>">
                         <input type="button" value="Modificar"/>
                         </a>
                     </td>
-                    <td><a href="usuarioEliminar.jsp?id=<%= u.getRun() %>">
+                    <td><a href="usuarioEliminar.jsp?run=<%= u.getRun() %>">
                             <input type="button" value="Eliminar"/>
                         </a>
                     </td>       

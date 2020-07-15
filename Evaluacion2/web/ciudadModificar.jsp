@@ -4,6 +4,8 @@
     Author     : amaru
 --%>
 
+<%@page import="dao.CiudadDAO"%>
+<%@page import="modelos.Ciudad"%>
 <%@page contentType="text/html" pageEncoding="windows-1252"%>
 <!DOCTYPE html>
 <html>
@@ -20,25 +22,34 @@
     <body>
         <%@include file="partials/header.jsp" %>
         <%@include file="partials/autenticado.jsp" %>
-        
-        <form action="ControladorUsuario" method="post">
+        <center>
+        <% if(request.getParameter("cod")!=null){
+            Ciudad c = new CiudadDAO().obtenerCiudad(Integer.parseInt(request.getParameter("cod")));
+        %>
+        <form action="ControladorCiudad" method="post">
             <fieldset class="uk-fieldset">
                 <div>
                 <legend class="uk-legend">Modificar Ciudad</legend>
                 </div><br /><br />
                 <div>
                     Código
-                    <input class="uk-input uk-form-width-large" type="text" name="run" readonly="true" value="<%=  %>">
+                    <input class="uk-input uk-form-width-large" type="text" name="codigo" readonly="true" value="<%=c.getCodigo()  %>">
                 </div><br />
                 <div>
                     Nombre
-                    <input class="uk-input uk-form-width-large" type="text" name="nombre" value="<%= ) %>">
+                    <input class="uk-input uk-form-width-large" type="text" name="nombre" value="<%=c.getNombre() %>">
                 </div><br />
                 
-                <a class="uk-button uk-button-default" href="ciudades.jsp">Modificar</a>
-            </fieldset>
-            <input type="hidden" name="accion" value="3"/>
-        </form>
+                <input type="submit" class="uk-button uk-button-default" value="Modificar" />
                 <a class="uk-button uk-button-default" href="ciudades.jsp">Cancelar</a>
+            </fieldset>
+            <input type="hidden" name="accion" value="2"/>
+        </form>
+        <%}%>
+        <% if(request.getParameter("msj")!= null){%>
+            <h4><%= request.getParameter("msj") %></h4>
+        <%}%> 
+        </center>
+        
     </body>
 </html>

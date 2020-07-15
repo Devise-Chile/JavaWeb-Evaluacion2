@@ -85,13 +85,13 @@ public class ControladorCiudad extends HttpServlet {
             String nombre = request.getParameter("nombre").trim();
 
             if (codigo < 1 || nombre.equals("")) {
-                response.sendRedirect("modificarCiudad.jsp?msj=valores erroneos");
+                response.sendRedirect("ciudadModificar.jsp?msj=valores erroneos");
             } else {
                 CiudadDAO cd = new CiudadDAO();
                 Ciudad nuevaCiudad = new Ciudad(codigo, nombre);
 
                 if (cd.obtenerCiudad(nuevaCiudad.getCodigo()) == null) {
-                    response.sendRedirect("modificarCiudad.jsp?msj=Codigo de ciudad inexistente");
+                    response.sendRedirect("ciudadModificar.jsp?msj=Codigo de ciudad inexistente");
                 } else {
                     int respuesta = cd.modificar(nuevaCiudad);
                     if (respuesta > 0) {

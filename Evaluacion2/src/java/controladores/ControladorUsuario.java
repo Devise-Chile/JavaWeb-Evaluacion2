@@ -65,7 +65,7 @@ public class ControladorUsuario extends HttpServlet {
         try{
         String run = request.getParameter("run").trim();
         if(run.equals("")){
-            response.sendRedirect("intranet.jsp?msj=Campos incompletos");
+            response.sendRedirect("usuarios.jsp?msj=Campos incompletos");
         }else{
             UsuarioDAO ud = new UsuarioDAO();
             Usuario u = new Usuario();
@@ -74,13 +74,13 @@ public class ControladorUsuario extends HttpServlet {
             if(respuesta==1){
             HttpSession sesion = request.getSession();
             response.sendRedirect(((Usuario)sesion.getAttribute("usuario")).getRun().equals(run)?
-                   "Salir":"intranet.jsp?msj=Usuario eliminado");
+                   "Salir.jsp":"usuarios.jsp?msj=Usuario eliminado");
             }else{
-                response.sendRedirect("intranet.jsp?msj=No se pudo eliminar el usuario");
+                response.sendRedirect("usuarios.jsp?msj=No se pudo eliminar el usuario");
             }
         }
         }catch(Exception e){
-             response.sendRedirect("intranet.jsp?msj="+e.getMessage());
+             response.sendRedirect("usuarios.jsp?msj="+e.getMessage());
         }
     }
     private void modificar(HttpServletRequest request, HttpServletResponse response) throws IOException{
@@ -90,7 +90,7 @@ public class ControladorUsuario extends HttpServlet {
         String apellido = request.getParameter("apellido").trim();
         String password = request.getParameter("password").trim();
         if(run.equals("")||nombre.isEmpty()||apellido.length()==0){
-            response.sendRedirect("intranet.jsp?msj=Campos incompletos");
+            response.sendRedirect("usuarios.jsp?msj=Campos incompletos");
         }else{
             UsuarioDAO ud = new UsuarioDAO();
             if(password.equals("")){
@@ -98,11 +98,11 @@ public class ControladorUsuario extends HttpServlet {
             }
             Usuario u = new Usuario(run,nombre,apellido,password);
             int respuesta = ud.modificarUsuario(u);
-            response.sendRedirect(respuesta==1?"intranet.jsp?msj=Usuario modificado":
-                    "intranet.jsp?msj=Usuario no se pudo modificar");
+            response.sendRedirect(respuesta==1?"usuarios.jsp?msj=Usuario modificado":
+                    "usuarios.jsp?msj=Usuario no se pudo modificar");
         }
         }catch(Exception e){
-            response.sendRedirect("intranet.jsp?msj="+e.getMessage());
+            response.sendRedirect("usuarios.jsp?msj="+e.getMessage());
         }
     }
     private void iniciarSesion(HttpServletRequest request, HttpServletResponse response) throws IOException{
@@ -142,15 +142,15 @@ public class ControladorUsuario extends HttpServlet {
                 if(ud.obtenerUsuario(usuarioNuevo.getRun())==null){
                     int respuesta = ud.registrarUsuario(usuarioNuevo);
                     if(respuesta==1){
-                    response.sendRedirect((sesion.getAttribute("usuario")!=null)?"intranet.jsp?msj=Usuario registrado"
+                    response.sendRedirect((sesion.getAttribute("usuario")!=null)?"usuarios.jsp?msj=Usuario registrado"
                             :"index.jsp?msj=Usuario registrado, inicie sesion");
                     }else{
-                    response.sendRedirect((sesion.getAttribute("usuario")!=null)?"intranet.jsp?msj=Usuario no se puede registar"
+                    response.sendRedirect((sesion.getAttribute("usuario")!=null)?"usuarios.jsp?msj=Usuario no se puede registar"
                             :"index.jsp?msj=Usuario no se puede registrar");
                     }
 
                 }else{
-                    response.sendRedirect((sesion.getAttribute("usuario")!=null)?"intranet.jsp?msj=Usuario ya existe":
+                    response.sendRedirect((sesion.getAttribute("usuario")!=null)?"usuarios.jsp?msj=Usuario ya existe":
                             "registro.jsp?msj=Usuario ya existe");
                 }
             }

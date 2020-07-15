@@ -4,6 +4,9 @@
     Author     : amaru
 --%>
 
+<%@page import="dao.DivisionDAO"%>
+<%@page import="modelos.Division"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="windows-1252"%>
 <!DOCTYPE html>
 <html>
@@ -20,31 +23,55 @@
     <body>
         <%@include file="partials/header.jsp" %>
         <%@include file="partials/autenticado.jsp" %>
-        
-                <h3>Divisiones Registrados</h3>
-        <table class="uk-table uk-table-divider">
-            <thead>
-                <tr>
-                    <th>Código</th>
-                    <th>Nombre</th>
-                    <th>Modificar</th>
-                    <th>Eliminar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td><a href="modificarDivision.jsp?cod=<%=  %>">
-                        <input type="button" value="Modificar"/>
-                        </a>
-                    </td>
-                    <td><a href="eliminarDivision.jsp?id=<%=  %>">
-                            <input type="button" value="Eliminar"/>
-                        </a>
-                    </td>       
-                </tr>
-            </tbody>
-        </table>
+        <center class="uk-container">
+            <h3>Divisiones</h3>
+            
+            <form action="ControladorDivision" method="post">
+                <table>
+                    <tr>
+                        <td>Nombre</td>
+                        <td><input type="text" name="nombre"/></td>
+                    </tr>
+                    <tr>
+                        <td><input type="reset" value="Limpiar"/></td>
+                        <td><input type="submit" value="Agregar"/></td>
+                        <input type="hidden" name="accion" value="1"/>
+                    </tr>
+                </table>
+            </form>
+            <% if(request.getParameter("msj")!= null){%>
+                <h4><%= request.getParameter("msj") %></h4>
+            <%}%>
+            
+            <table class="uk-table uk-table-divider">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Modificar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%
+                        ArrayList<Division> divisiones = new DivisionDAO().obtenerDivisiones();
+                        for(Division d: divisiones) {
+                    %>
+                    <tr>
+                        <td><%=d.getCodigo()%></td>
+                        <td><%=d.getNombre()%></td>
+                        <td><a href="divisionModificar.jsp?cod=<%= d.getCodigo()  %>">
+                            <input type="button" value="Modificar"/>
+                            </a>
+                        </td>
+                        <td><a href="divisionEliminar.jsp?id=<%= d.getNombre() %>">
+                                <input type="button" value="Eliminar"/>
+                            </a>
+                        </td>       
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </center>
     </body>
 </html>

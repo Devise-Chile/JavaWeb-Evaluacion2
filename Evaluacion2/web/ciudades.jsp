@@ -61,11 +61,11 @@
                     <tr>
                         <td><%= c.getCodigo()%></td>
                         <td><%= c.getNombre() %></td>
-                        <td><a href="modificarCiudad.jsp?cod=<%=c.getCodigo()  %>">
+                        <td><a href="ciudadModificar.jsp?cod=<%=c.getCodigo()  %>">
                             <input type="button" value="Modificar"/>
                             </a>
                         </td>
-                        <td><a href="eliminarCiudad.jsp?id=<%=c.getCodigo()  %>">
+                        <td><a href="ciudadEliminar.jsp?cod=<%=c.getCodigo()  %>">
                                 <input type="button" value="Eliminar"/>
                             </a>
                         </td>       

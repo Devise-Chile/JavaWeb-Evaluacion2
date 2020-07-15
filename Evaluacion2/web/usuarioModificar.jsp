@@ -57,7 +57,7 @@
                     <input class="uk-input uk-form-width-large" type="password" name="password" value=""/>
                     <p>Para conservar password dejar vacio</p>
                 </div><br />
-                <a class="uk-button uk-button-default" href="usuarios.jsp">Modificar</a>
+                <input type="submit" class="uk-button uk-button-default" value="Modificar" />
             </fieldset>
             <input type="hidden" name="accion" value="3"/>
         </form>

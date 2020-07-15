@@ -51,7 +51,7 @@
                     Password
                     <input class="uk-input uk-form-width-large" type="password" name="password" value=""/>
                 </div><br />
-                <a class="uk-button uk-button-default" href="equipos.jsp">Registrar</a>
+                <input type="submit" class="uk-button uk-button-default" value="Registrar" />
             </fieldset>
             <input type="hidden" name="accion" value="2"/>
         </form>
