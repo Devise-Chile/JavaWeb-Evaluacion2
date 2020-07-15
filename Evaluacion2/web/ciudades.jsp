@@ -4,6 +4,9 @@
     Author     : amaru
 --%>
 
+<%@page import="dao.CiudadDAO"%>
+<%@page import="modelos.Ciudad"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="windows-1252"%>
 <!DOCTYPE html>
 <html>
@@ -21,30 +24,55 @@
         <%@include file="partials/header.jsp" %>
         <%@include file="partials/autenticado.jsp" %>
         
-        <h3>Ciudades Registrados</h3>
-        <table class="uk-table uk-table-divider">
-            <thead>
-                <tr>
-                    <th>Código</th>
-                    <th>Nombre</th>
-                    <th>Modificar</th>
-                    <th>Eliminar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td><a href="modificarCiudad.jsp?cod=<%=  %>">
-                        <input type="button" value="Modificar"/>
-                        </a>
-                    </td>
-                    <td><a href="eliminarCiudad.jsp?id=<%=  %>">
-                            <input type="button" value="Eliminar"/>
-                        </a>
-                    </td>       
-                </tr>
-            </tbody>
-        </table>
+        <center class="uk-container">
+            <h3>Ciudades</h3>
+            
+            <form action="ControladorCiudad" method="post">
+                <table>
+                    <tr>
+                        <td>Nombre</td>
+                        <td><input type="text" name="nombre"/></td>
+                    </tr>
+                    <tr>
+                        <td><input type="reset" value="Limpiar"/></td>
+                        <td><input type="submit" value="Agregar"/></td>
+                        <input type="hidden" name="accion" value="1"/>
+                    </tr>
+                </table>
+            </form>
+            <% if(request.getParameter("msj")!= null){%>
+                <h4><%= request.getParameter("msj") %></h4>
+            <%}%>
+            
+            <table class="uk-table uk-table-divider">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Modificar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%
+                        ArrayList<Ciudad> ciudades = new CiudadDAO().obtenerCiudades();
+                        for(Ciudad c: ciudades) {
+                    %>
+                    <tr>
+                        <td><%= c.getCodigo()%></td>
+                        <td><%= c.getNombre() %></td>
+                        <td><a href="modificarCiudad.jsp?cod=<%=c.getCodigo()  %>">
+                            <input type="button" value="Modificar"/>
+                            </a>
+                        </td>
+                        <td><a href="eliminarCiudad.jsp?id=<%=c.getCodigo()  %>">
+                                <input type="button" value="Eliminar"/>
+                            </a>
+                        </td>       
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </center>
     </body>
 </html>

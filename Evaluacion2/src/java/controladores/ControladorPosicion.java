@@ -79,7 +79,7 @@ public class ControladorPosicion extends HttpServlet {
         }
     }
 
-    private void modificar(HttpServletRequest request, HttpServletResponse response) {
+    private void modificar(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
             int codigo = Integer.parseInt(request.getParameter("codigo").trim());
             String nombre = request.getParameter("nombre").trim();
@@ -101,7 +101,8 @@ public class ControladorPosicion extends HttpServlet {
                     }
                 }
             }
-        } catch (Exception e) {;
+        } catch (Exception e) {
+            response.sendRedirect("posiciones.jsp?msj=" + e.getMessage());
         }
     }
 
@@ -133,7 +134,6 @@ public class ControladorPosicion extends HttpServlet {
                 }
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             response.sendRedirect("posiciones.jsp?msj=" + e.getMessage());
         }
     }

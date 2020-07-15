@@ -6,6 +6,8 @@
 package controladores;
 
 import dao.CiudadDAO;
+import dao.EquipoDAO;
+import dao.EstadioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -33,51 +35,110 @@ public class ControladorCiudad extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(request.getParameter("accion")!=null){
-        String accion = request.getParameter("accion");
-        switch(accion){
-            case "1": registrar(request,response);
-                break;
-            case "2": modificar(request,response);
-            break;
-            case "3": eliminar(request,response);
-            break;
+        if (request.getParameter("accion") != null) {
+            String accion = request.getParameter("accion");
+            switch (accion) {
+                case "1":
+                    registrar(request, response);
+                    break;
+                case "2":
+                    modificar(request, response);
+                    break;
+                case "3":
+                    eliminar(request, response);
+                    break;
+            }
+        } else {
+            response.sendRedirect("ciudades.jsp?msj=acceso no permitido");
         }
-         }else{
-             response.sendRedirect("crudCiudad.jsp?msj=acceso no permitido");
-         }
     }
 
-    private void registrar(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        try{
-            
+    private void registrar(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        try {
+
             String nombre = request.getParameter("nombre").trim();
-           
-            if(nombre.equals("")){
-                response.sendRedirect("crudCiudad.jsp?msj=valores erroneos");
-            }else{
+
+            if (nombre.equals("")) {
+                response.sendRedirect("ciudades.jsp?msj=valores erroneos");
+            } else {
                 CiudadDAO cd = new CiudadDAO();
                 Ciudad c = new Ciudad(nombre);
-                if(cd.obtenerCiudad(c.getNombre())==null){
+                if (cd.obtenerCiudad(c.getNombre()) == null) {
                     int respuesta = cd.registrar(c);
-                    if(respuesta==1){
-                    response.sendRedirect("crudCiudad.jsp?msj=Ciudad registrada");
-                    }else{
-                    response.sendRedirect("crudCiudad.jsp?msj=Ciudad no se pudo registrar");
+                    if (respuesta == 1) {
+                        response.sendRedirect("ciudades.jsp?msj=Ciudad registrada");
+                    } else {
+                        response.sendRedirect("ciudades.jsp?msj=Ciudad no se pudo registrar");
                     }
-                }else{
-                    response.sendRedirect("crudCiudad.jsp?msj=Ciudad ya existe");
+                } else {
+                    response.sendRedirect("ciudades.jsp?msj=Ciudad ya existe");
                 }
             }
-           }catch(Exception e){
-               response.sendRedirect("crudCiudad.jsp?msj="+e.getMessage());
-           }
+        } catch (Exception e) {
+            response.sendRedirect("ciudades.jsp?msj=" + e.getMessage());
+        }
     }
-    private void modificar(HttpServletRequest request, HttpServletResponse response){
-        
+
+    private void modificar(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        try {
+            int codigo = Integer.parseInt(request.getParameter("codigo").trim());
+            String nombre = request.getParameter("nombre").trim();
+
+            if (codigo < 1 || nombre.equals("")) {
+                response.sendRedirect("modificarCiudad.jsp?msj=valores erroneos");
+            } else {
+                CiudadDAO cd = new CiudadDAO();
+                Ciudad nuevaCiudad = new Ciudad(codigo, nombre);
+
+                if (cd.obtenerCiudad(nuevaCiudad.getCodigo()) == null) {
+                    response.sendRedirect("modificarCiudad.jsp?msj=Codigo de ciudad inexistente");
+                } else {
+                    int respuesta = cd.modificar(nuevaCiudad);
+                    if (respuesta > 0) {
+                        response.sendRedirect("ciudades.jsp?msj=Ciudad modificada");
+                    } else {
+                        response.sendRedirect("ciudades.jsp?msj=Ciudad no se pudo modificar");
+                    }
+                }
+            }
+        } catch (Exception e) {
+            response.sendRedirect("ciudades.jsp?msj=" + e.getMessage());
+        }
     }
-    private void eliminar(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        
+
+    private void eliminar(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        try {
+            int codigo = Integer.parseInt(request.getParameter("codigo").trim());
+            String nombre = request.getParameter("nombre").trim();
+
+            if (codigo < 1) {
+                response.sendRedirect("ciudades.jsp?msj=valores erroneos");
+            } else {
+                CiudadDAO cd = new CiudadDAO();
+                Ciudad ciudad = new Ciudad(codigo, nombre);
+                if (cd.obtenerCiudad(ciudad.getCodigo()) != null) {
+                    EstadioDAO esd = new EstadioDAO();
+                    EquipoDAO eqd = new EquipoDAO();
+                    
+                    if (eqd.existeCiudad(ciudad)) {
+                        response.sendRedirect("ciudades.jsp?msj=No se puede eliminar por tener equipos con esta ciudad");
+                    } else if (esd.existeCiudad(ciudad)) {
+                        response.sendRedirect("ciudades.jsp?msj=No se puede eliminar por tener estadios con esta ciudad");
+                    } else {
+                        int respuesta = cd.eliminar(ciudad);
+                        if (respuesta == 1) {
+                            response.sendRedirect("ciudades.jsp?msj=Ciudad eliminada");
+                        } else {
+                            response.sendRedirect("ciudades.jsp?msj=Ciudad no se pudo eliminar");
+                        }
+                    }
+                } else {
+                    response.sendRedirect("ciudades.jsp?msj=Ciudad no existe");
+                }
+            }
+        } catch (Exception e) {
+            response.sendRedirect("ciudades.jsp?msj=" + e.getMessage());
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
