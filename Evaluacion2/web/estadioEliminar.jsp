@@ -28,7 +28,7 @@
                 </div><br /><br />
                 <div>
                     Código
-                    <input class="uk-input uk-form-width-large" type="text" name="run" readonly="true" value="<%=  %>">
+                    <input class="uk-input uk-form-width-large" type="text" name="codigo" readonly="true" value="<%=  %>">
                 </div><br />
                 <div>
                     Nombre

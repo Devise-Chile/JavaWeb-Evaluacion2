@@ -4,6 +4,8 @@
     Author     : amaru
 --%>
 
+<%@page import="dao.DivisionDAO"%>
+<%@page import="modelos.Division"%>
 <%@page contentType="text/html" pageEncoding="windows-1252"%>
 <!DOCTYPE html>
 <html>
@@ -20,25 +22,33 @@
     <body>
         <%@include file="partials/header.jsp" %>
         <%@include file="partials/autenticado.jsp" %>
-        
-        <form action="ControladorUsuario" method="post">
-            <fieldset class="uk-fieldset">
-                <div>
-                <legend class="uk-legend">Eliminar Division</legend>
-                </div><br /><br />
-                <div>
-                    Código
-                    <input class="uk-input uk-form-width-large" type="text" name="run" readonly="true" value="<%=  %>">
-                </div><br />
-                <div>
-                    Nombre
-                    <input class="uk-input uk-form-width-large" type="text" name="nombre" readonly="true" value="<%= ) %>">
-                </div><br />
-                
-                <a class="uk-button uk-button-default" href="divisiones.jsp">Eliminar</a>
-            </fieldset>
-            <input type="hidden" name="accion" value="3"/>
-        </form>
-                <a class="uk-button uk-button-default" href="divisiones.jsp">Cancelar</a>
+        <center class="uk-container">
+            <% if(request.getParameter("cod")!=null){
+                Division d = new DivisionDAO().obtenerDivision(Integer.parseInt(request.getParameter("cod")));
+            %>
+            <form action="ControladorDivision" method="post">
+                <fieldset class="uk-fieldset">
+                    <div>
+                    <legend class="uk-legend">Eliminar Division</legend>
+                    </div><br /><br />
+                    <div>
+                        Código
+                        <input class="uk-input uk-form-width-large" type="text" name="codigo" readonly="true" value="<%= d.getCodigo() %>">
+                    </div><br />
+                    <div>
+                        Nombre
+                        <input class="uk-input uk-form-width-large" type="text" name="nombre" readonly="true" value="<%= d.getNombre() %>">
+                    </div><br />
+
+                    <input type="submit" class="uk-button uk-button-default" value="Eliminar" />
+                    <a class="uk-button uk-button-default" href="divisiones.jsp">Cancelar</a>
+                </fieldset>
+                <input type="hidden" name="accion" value="3"/>
+            </form>
+            <% } %>        
+            <% if(request.getParameter("msj")!= null){%>
+                <h4><%= request.getParameter("msj") %></h4>
+            <%}%> 
+        </center>
     </body>
 </html>

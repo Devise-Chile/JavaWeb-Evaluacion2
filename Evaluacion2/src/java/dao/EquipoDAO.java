@@ -128,4 +128,19 @@ public class EquipoDAO extends Conexion {
             desconectar();
         }
     }
+    
+    public boolean existeDivision(Division division) throws SQLException{
+        try{
+            String sentencia = "select * from equipo where cod_division= ?";
+            conectar();
+            PreparedStatement ps = obtenerPS(sentencia);
+            ps.setInt(1, division.getCodigo());
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        }catch(Exception e){
+            return false;
+        }finally{
+            desconectar();
+        }
+    }
 }

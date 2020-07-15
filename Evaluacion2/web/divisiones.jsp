@@ -64,7 +64,7 @@
                             <input type="button" value="Modificar"/>
                             </a>
                         </td>
-                        <td><a href="divisionEliminar.jsp?id=<%= d.getNombre() %>">
+                        <td><a href="divisionEliminar.jsp?cod=<%= d.getCodigo()%>">
                                 <input type="button" value="Eliminar"/>
                             </a>
                         </td>       
