@@ -1,6 +1,6 @@
 <%-- 
-    Document   : ciudadModificar
-    Created on : 14/07/2020, 07:55:41 PM
+    Document   : posicionModificar
+    Created on : 14/07/2020, 08:02:21 PM
     Author     : amaru
 --%>
 
@@ -15,7 +15,7 @@
         <!-- UIkit JS -->
         <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/js/uikit-icons.min.js"></script>
-        <title>Modificar Ciudad</title>
+        <title>Modificar Posición</title>
     </head>
     <body>
         <%@include file="partials/header.jsp" %>
@@ -24,7 +24,7 @@
         <form action="ControladorUsuario" method="post">
             <fieldset class="uk-fieldset">
                 <div>
-                <legend class="uk-legend">Modificar Ciudad</legend>
+                <legend class="uk-legend">Modificar Posición</legend>
                 </div><br /><br />
                 <div>
                     Código
@@ -35,10 +35,10 @@
                     <input class="uk-input uk-form-width-large" type="text" name="nombre" value="<%= ) %>">
                 </div><br />
                 
-                <a class="uk-button uk-button-default" href="ciudades.jsp">Modificar</a>
+                <a class="uk-button uk-button-default" href="posiciones.jsp">Eliminar</a>
             </fieldset>
             <input type="hidden" name="accion" value="3"/>
         </form>
-                <a class="uk-button uk-button-default" href="ciudades.jsp">Cancelar</a>
+                <a class="uk-button uk-button-default" href="posiciones.jsp">Cancelar</a>
     </body>
 </html>
