@@ -13,7 +13,7 @@ public class Jugador {
     private int id;
     private String nombre;
     private String apellido;
-    private String f_nacimiento;
+    private String fechaNacimiento;
     private Posicion posicion;
     private int sueldo;
     private Equipo equipo;
@@ -25,7 +25,7 @@ public class Jugador {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.f_nacimiento = f_nacimiento;
+        this.fechaNacimiento = f_nacimiento;
         this.posicion = posicion;
         this.sueldo = sueldo;
         this.equipo = equipo;
@@ -55,12 +55,12 @@ public class Jugador {
         this.apellido = apellido;
     }
 
-    public String getF_nacimiento() {
-        return f_nacimiento;
+    public String getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
-    public void setF_nacimiento(String f_nacimiento) {
-        this.f_nacimiento = f_nacimiento;
+    public void setFechaNacimiento(String f_nacimiento) {
+        this.fechaNacimiento = f_nacimiento;
     }
 
     public Posicion getPosicion() {

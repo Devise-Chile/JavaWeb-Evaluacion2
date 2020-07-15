@@ -67,3 +67,8 @@ CREATE TABLE `usuario` (
 create or replace view v_estadio as
 select e.codigo as cod_estadio, e.nombre as nombre_estadio, e.cod_ciudad, e.capacidad, c.nombre as nombre_ciudad
 from estadio e inner join ciudad c on e.cod_ciudad = c.codigo;
+
+create or replace view v_jugador as
+select j.id, j.nombre as nombre_jugador, j.apellido as apellido_jugador, f_nacimiento, cod_posicion, pos.nombre as nombre_posicion, sueldo, cod_equipo, e.nombre as nombre_equipo
+from jugador j inner join posicion pos on j.cod_posicion = pos.codigo inner join equipo e on j.cod_equipo = e.codigo;
+

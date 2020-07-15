@@ -4,6 +4,9 @@
     Author     : amaru
 --%>
 
+<%@page import="dao.PosicionDAO"%>
+<%@page import="modelos.Posicion"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="windows-1252"%>
 <!DOCTYPE html>
 <html>
@@ -21,30 +24,54 @@
         <%@include file="partials/header.jsp" %>
         <%@include file="partials/autenticado.jsp" %>
         
-                <h3>Posiciones Registrados</h3>
-        <table class="uk-table uk-table-divider">
-            <thead>
-                <tr>
-                    <th>Código</th>
-                    <th>Nombre</th>
-                    <th>Modificar</th>
-                    <th>Eliminar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td><a href="modificarJugador.jsp?cod=<%=  %>">
-                        <input type="button" value="Modificar"/>
-                        </a>
-                    </td>
-                    <td><a href="eliminarJugador.jsp?id=<%=  %>">
-                            <input type="button" value="Eliminar"/>
-                        </a>
-                    </td>       
-                </tr>
-            </tbody>
-        </table>
+        <center class="uk-container">
+            <h3>Posiciones</h3>
+            <form action="ControladorPosicion" method="post">
+                <table>
+                    <tr>
+                        <td>Nombre</td>
+                        <td><input type="text" name="nombre"/></td>
+                    </tr>
+                    <tr>
+                        <td><input type="reset" value="Limpiar"/></td>
+                        <td><input type="submit" value="Agregar"/></td>
+                        <input type="hidden" name="accion" value="1"/>
+                    </tr>
+                </table>
+            </form>
+            <% if(request.getParameter("msj")!= null){%>
+                <h4><%= request.getParameter("msj") %></h4>
+            <%}%>
+
+            <table class="uk-table uk-table-divider">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Modificar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%
+                        ArrayList<Posicion> posiciones = new PosicionDAO().obtenerPosiciones();
+                        for(Posicion pos: posiciones) {
+                    %>
+                    <tr>
+                        <td><%= pos.getCodigo() %></td>
+                        <td><%= pos.getNombre() %></td>
+                        <td><a href="posicionModificar.jsp?cod=<%=pos.getCodigo() %>">
+                            <input type="button" value="Modificar"/>
+                            </a>
+                        </td>
+                        <td><a href="posicionEliminar.jsp?cod=<%=pos.getCodigo() %>">
+                                <input type="button" value="Eliminar"/>
+                            </a>
+                        </td>       
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </center>
     </body>
 </html>
