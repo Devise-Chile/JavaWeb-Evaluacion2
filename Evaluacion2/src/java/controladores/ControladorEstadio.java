@@ -61,7 +61,7 @@ public class ControladorEstadio extends HttpServlet {
             int codCiudad = Integer.parseInt(request.getParameter("cod_ciudad").trim());
             int capacidad = Integer.parseInt(request.getParameter("capacidad").trim());
 
-            if (nombre.equals("")) {
+            if (nombre.equals("") || codCiudad < 1 || capacidad < 1) {
                 response.sendRedirect("estadios.jsp?msj=valores erroneos");
             } else {
                 CiudadDAO cd = new CiudadDAO();
@@ -97,7 +97,7 @@ public class ControladorEstadio extends HttpServlet {
             int codCiudad = Integer.parseInt(request.getParameter("cod_ciudad").trim());
             int capacidad = Integer.parseInt(request.getParameter("capacidad").trim());
 
-            if (codigo < 1 || nombre.equals("") || capacidad < 1) {
+            if (codigo < 1 || nombre.equals("") || codCiudad < 1 || capacidad < 1) {
                 response.sendRedirect("estadioModificar.jsp?msj=valores erroneos");
             } else {
                 CiudadDAO cd = new CiudadDAO();
@@ -139,7 +139,7 @@ public class ControladorEstadio extends HttpServlet {
                     EquipoDAO eqd = new EquipoDAO();
                     
                     if (eqd.existeEstadio(estadio)) {
-                        response.sendRedirect("estadios.jsp?msj=No se puede eliminar por tener equipos con esta ciudad");
+                        response.sendRedirect("estadios.jsp?msj=No se puede eliminar por tener equipos con este estadio");
                     } else {
                         int respuesta = ed.eliminar(estadio);
                         if (respuesta == 1) {

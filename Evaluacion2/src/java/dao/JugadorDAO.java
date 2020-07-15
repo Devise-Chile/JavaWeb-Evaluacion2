@@ -131,4 +131,19 @@ public class JugadorDAO extends Conexion {
             desconectar();
         }
     }
+    
+    public boolean existeEquipo(Equipo equipo) throws SQLException{
+        try{
+            String sentencia = "select * from jugador where cod_equipo = ?";
+            conectar();
+            PreparedStatement ps = obtenerPS(sentencia);
+            ps.setInt(1, equipo.getCodigo());
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        }catch(Exception e){
+            return false;
+        }finally{
+            desconectar();
+        }
+    }
 }

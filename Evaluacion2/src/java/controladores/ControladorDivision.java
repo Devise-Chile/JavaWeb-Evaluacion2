@@ -119,7 +119,7 @@ public class ControladorDivision extends HttpServlet {
                     EquipoDAO eqd = new EquipoDAO();
                     
                     if (eqd.existeDivision(division)) {
-                        response.sendRedirect("divisiones.jsp?msj=No se puede eliminar por tener equipos con esta ciudad");
+                        response.sendRedirect("divisiones.jsp?msj=No se puede eliminar por tener equipos con esta división");
                     } else {
                         int respuesta = dd.eliminar(division);
                         if (respuesta == 1) {

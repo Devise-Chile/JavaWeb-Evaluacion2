@@ -31,7 +31,7 @@
             <form action="ControladorEstadio" method="post">
                 <fieldset class="uk-fieldset">
                     <div>
-                    <legend class="uk-legend">Modificar Estadio</legend>
+                    <legend class="uk-legend">Eliminar Estadio</legend>
                     </div><br /><br />
                     <div>
                         Código
@@ -61,7 +61,7 @@
                     </div><br />
 
                     <input type="submit" class="uk-button uk-button-default" value="Eliminar" />
-                    <a class="uk-button uk-button-default" href="ciudades.jsp">Cancelar</a>
+                    <a class="uk-button uk-button-default" href="estadios.jsp">Cancelar</a>
                 </fieldset>
                 <input type="hidden" name="accion" value="3"/>
             </form>

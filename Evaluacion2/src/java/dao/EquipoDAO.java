@@ -46,7 +46,7 @@ public class EquipoDAO extends Conexion {
             ps.setInt(2, equipo.getCiudad().getCodigo());
             ps.setInt(3, equipo.getEstadio().getCodigo());
             ps.setInt(4, equipo.getDivision().getCodigo());
-            ps.setInt(7, equipo.getCodigo());
+            ps.setInt(5, equipo.getCodigo());
             
             return ps.executeUpdate();
         }catch(Exception e){
@@ -69,12 +69,36 @@ public class EquipoDAO extends Conexion {
             desconectar();
         }
     }
+    
     public Equipo obtenerEquipo(int codigo) throws SQLException{
         String sentencia = "select * from v_equipo where codigo=?";
         try{
             conectar();
             PreparedStatement ps = obtenerPS(sentencia);
             ps.setInt(1, codigo);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                Ciudad ciudad = new Ciudad(rs.getInt("cod_ciudad"), rs.getString("nombre_ciudad"));
+                Estadio estadio = new Estadio(rs.getInt("cod_estadio"), rs.getString("nombre_estadio"), null, rs.getInt("capacidad"));
+                Division division = new Division(rs.getInt("cod_division"), rs.getString("nombre_division"));
+                
+                return (new Equipo(rs.getInt("codigo"), rs.getString("nombre_equipo"), ciudad, estadio, division));
+            }else{
+                return null;
+            }
+        }catch(Exception e ){
+            return null;
+        }finally{
+            desconectar();
+        }
+    }
+    
+    public Equipo obtenerEquipo(String nombre) throws SQLException{
+        String sentencia = "select * from v_equipo where nombre_equipo = ?";
+        try{
+            conectar();
+            PreparedStatement ps = obtenerPS(sentencia);
+            ps.setString(1, nombre);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 Ciudad ciudad = new Ciudad(rs.getInt("cod_ciudad"), rs.getString("nombre_ciudad"));

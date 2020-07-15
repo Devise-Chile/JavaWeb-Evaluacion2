@@ -19,6 +19,13 @@ public class Equipo {
     public Equipo() {
     }
 
+    public Equipo(String nombre, Ciudad ciudad, Estadio estadio, Division division) {
+        this.nombre = nombre;
+        this.ciudad = ciudad;
+        this.estadio = estadio;
+        this.division = division;
+    }
+
     public Equipo(int codigo, String nombre, Ciudad ciudad, Estadio estadio, Division division) {
         this.codigo = codigo;
         this.nombre = nombre;

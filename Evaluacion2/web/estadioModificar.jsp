@@ -56,7 +56,7 @@
                     </div><br />
 
                     <input type="submit" class="uk-button uk-button-default" value="Modificar" />
-                    <a class="uk-button uk-button-default" href="ciudades.jsp">Cancelar</a>
+                    <a class="uk-button uk-button-default" href="estadios.jsp">Cancelar</a>
                 </fieldset>
                 <input type="hidden" name="accion" value="2"/>
             </form>
