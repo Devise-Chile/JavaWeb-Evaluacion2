@@ -18,7 +18,7 @@ import modelos.Estadio;
  */
 public class EstadioDAO extends Conexion {
     public int registrar(Estadio estadio) throws SQLException{
-        String sentencia = "Insert into estadio nombre, cod_ciudad, capacidad values (?,?,?)";
+        String sentencia = "Insert into estadio (nombre, cod_ciudad, capacidad) values (?,?,?)";
         try{
             conectar();
             PreparedStatement ps = obtenerPS(sentencia);
@@ -70,7 +70,7 @@ public class EstadioDAO extends Conexion {
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 Ciudad ciudad = new Ciudad(rs.getInt("cod_ciudad"), rs.getString("nombre_ciudad"));
-                return new Estadio(rs.getInt("cod_ciudad"),rs.getString("nombre_estadio"), ciudad, rs.getInt("capacidad"));
+                return new Estadio(rs.getInt("cod_estadio"),rs.getString("nombre_estadio"), ciudad, rs.getInt("capacidad"));
             }else{
                 return null;
             }
@@ -90,7 +90,7 @@ public class EstadioDAO extends Conexion {
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 Ciudad ciudad = new Ciudad(rs.getInt("cod_ciudad"), rs.getString("nombre_ciudad"));
-                return new Estadio(rs.getInt("cod_ciudad"),rs.getString("nombre_estadio"), ciudad, rs.getInt("capacidad"));
+                return new Estadio(rs.getInt("cod_estadio"),rs.getString("nombre_estadio"), ciudad, rs.getInt("capacidad"));
             }else{
                 return null;
             }
@@ -110,7 +110,7 @@ public class EstadioDAO extends Conexion {
             ArrayList<Estadio> estadios = new ArrayList();
             while(rs.next()){
                 Ciudad ciudad = new Ciudad(rs.getInt("cod_ciudad"), rs.getString("nombre_ciudad"));
-                estadios.add(new Estadio(rs.getInt("cod_ciudad"),rs.getString("nombre_estadio"), ciudad, rs.getInt("capacidad")));
+                estadios.add(new Estadio(rs.getInt("cod_estadio"),rs.getString("nombre_estadio"), ciudad, rs.getInt("capacidad")));
             }
             return estadios;
         }catch(Exception e ){

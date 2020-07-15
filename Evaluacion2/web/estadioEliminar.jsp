@@ -4,6 +4,10 @@
     Author     : amaru
 --%>
 
+<%@page import="dao.CiudadDAO"%>
+<%@page import="modelos.Ciudad"%>
+<%@page import="modelos.Estadio"%>
+<%@page import="dao.EstadioDAO"%>
 <%@page contentType="text/html" pageEncoding="windows-1252"%>
 <!DOCTYPE html>
 <html>
@@ -20,33 +24,51 @@
     <body>
         <%@include file="partials/header.jsp" %>
         <%@include file="partials/autenticado.jsp" %>
-        
-        <form action="ControladorUsuario" method="post">
-            <fieldset class="uk-fieldset">
-                <div>
-                <legend class="uk-legend">Modificar Estadio</legend>
-                </div><br /><br />
-                <div>
-                    Código
-                    <input class="uk-input uk-form-width-large" type="text" name="codigo" readonly="true" value="<%=  %>">
-                </div><br />
-                <div>
-                    Nombre
-                    <input class="uk-input uk-form-width-large" type="text" name="nombre" readonly="true" value="<%= ) %>">
-                </div><br />
-                <div>
-                    Ciudad
-                    <input class="uk-input uk-form-width-large" type="text" name="run" readonly="true" value="<%=  %>">
-                </div><br />
-                <div>
-                    Capacidad
-                    <input class="uk-input uk-form-width-large" type="text" name="run" readonly="true" value="<%=  %>">
-                </div><br />
-                
-                <a class="uk-button uk-button-default" href="ciudades.jsp">Modificar</a>
-            </fieldset>
-            <input type="hidden" name="accion" value="3"/>
-        </form>
-                <a class="uk-button uk-button-default" href="ciudades.jsp">Cancelar</a>
+        <center class="uk-container">
+            <% if(request.getParameter("cod")!=null){
+                Estadio e = new EstadioDAO().obtenerEstadio(Integer.parseInt(request.getParameter("cod")));
+            %>
+            <form action="ControladorEstadio" method="post">
+                <fieldset class="uk-fieldset">
+                    <div>
+                    <legend class="uk-legend">Modificar Estadio</legend>
+                    </div><br /><br />
+                    <div>
+                        Código
+                        <input class="uk-input uk-form-width-large" type="text" name="codigo" readonly="true" value="<%= e.getCodigo() %>">
+                    </div><br />
+                    <div>
+                        Nombre
+                        <input class="uk-input uk-form-width-large" type="text" name="nombre" readonly="true" value="<%= e.getNombre() %>">
+                    </div><br />
+                    <div>
+                        Ciudad
+                        <select name="cod_ciudad" class="uk-select uk-form-width-large" readonly="true">
+                            <option value="0" disabled="disabled">Ninguno</option>
+                            <% for(Ciudad ciudad: new CiudadDAO().obtenerCiudades()) { %>
+                                <option
+                                    value="<%= ciudad.getCodigo()%>"
+                                    <% if(ciudad.getCodigo() == e.getCiudad().getCodigo()){ %>selected="selected"<%} else {%>disabled="disabled"<% } %>
+                                >
+                                    <%= ciudad.getNombre() %>
+                                </option>
+                            <% } %>
+                        </select>
+                    </div><br />
+                    <div>
+                        Capacidad
+                        <input class="uk-input uk-form-width-large" type="number" name="capacidad" readonly="true" value="<%= e.getCapacidad() %>">
+                    </div><br />
+
+                    <input type="submit" class="uk-button uk-button-default" value="Eliminar" />
+                    <a class="uk-button uk-button-default" href="ciudades.jsp">Cancelar</a>
+                </fieldset>
+                <input type="hidden" name="accion" value="3"/>
+            </form>
+            <% } %>        
+            <% if(request.getParameter("msj")!= null){%>
+                <h4><%= request.getParameter("msj") %></h4>
+            <%}%> 
+        </center>
     </body>
 </html>

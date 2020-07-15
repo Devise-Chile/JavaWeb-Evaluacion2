@@ -129,6 +129,21 @@ public class EquipoDAO extends Conexion {
         }
     }
     
+    public boolean existeEstadio(Estadio estadio) throws SQLException{
+        try{
+            String sentencia = "select * from equipo where cod_estadio= ?";
+            conectar();
+            PreparedStatement ps = obtenerPS(sentencia);
+            ps.setInt(1, estadio.getCodigo());
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        }catch(Exception e){
+            return false;
+        }finally{
+            desconectar();
+        }
+    }
+    
     public boolean existeDivision(Division division) throws SQLException{
         try{
             String sentencia = "select * from equipo where cod_division= ?";
