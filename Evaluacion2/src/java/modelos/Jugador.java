@@ -5,6 +5,10 @@
  */
 package modelos;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Date;
+
 /**
  *
  * @author amaru
@@ -19,6 +23,15 @@ public class Jugador {
     private Equipo equipo;
 
     public Jugador() {
+    }
+
+    public Jugador(String nombre, String apellido, String fechaNacimiento, Posicion posicion, int sueldo, Equipo equipo) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fechaNacimiento = fechaNacimiento;
+        this.posicion = posicion;
+        this.sueldo = sueldo;
+        this.equipo = equipo;
     }
 
     public Jugador(int id, String nombre, String apellido, String f_nacimiento, Posicion posicion, int sueldo, Equipo equipo) {
@@ -87,5 +100,10 @@ public class Jugador {
         this.equipo = equipo;
     }
     
+    public int getEdad() {
+        LocalDate nacimiento = LocalDate.parse(fechaNacimiento);
+        LocalDate actual = LocalDate.now();
+        return Period.between(nacimiento, actual).getYears();
+    }
     
 }

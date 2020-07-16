@@ -117,6 +117,29 @@ public class JugadorDAO extends Conexion {
         }
     }
     
+    public ArrayList<Jugador> obtenerJugadoresEquipo(Equipo equipo) throws SQLException{
+        String sentencia = "select * from v_jugador where cod_equipo = ?";
+        try{
+            conectar();
+            PreparedStatement ps = obtenerPS(sentencia);
+            ps.setInt(1, equipo.getCodigo());
+            
+            ResultSet rs = ps.executeQuery();
+            ArrayList<Jugador> jugadores = new ArrayList();
+            while(rs.next()){
+                Posicion pos = new Posicion(rs.getInt("cod_posicion"), rs.getString("nombre_posicion"));
+                
+                jugadores.add(new Jugador(rs.getInt("id"),rs.getString("nombre_jugador"),rs.getString("apellido_jugador"), rs.getString("f_nacimiento"),
+                    pos, rs.getInt("sueldo"), equipo));
+            }
+            return jugadores;
+        }catch(Exception e ){
+            return new ArrayList();
+        }finally{
+            desconectar();
+        }
+    }
+    
     public boolean existePosicion(Posicion posicion) throws SQLException{
         try{
             String sentencia = "select * from jugador where cod_posicion = ?";
